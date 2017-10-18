@@ -6,3 +6,13 @@ C:\Users\Soowi\Documents\Visual Studio 2015\Projects\ElevatorSimulator\ElevatorS
 C:\Users\Soowi\Documents\Visual Studio 2015\Projects\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.csproj.GenerateResource.Cache
 C:\Users\Soowi\Documents\Visual Studio 2015\Projects\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.exe
 C:\Users\Soowi\Documents\Visual Studio 2015\Projects\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.pdb
+C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\bin\Debug\ElevatorSimulator.exe.config
+C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\bin\Debug\ElevatorSimulator.exe
+C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\bin\Debug\ElevatorSimulator.pdb
+C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.csprojResolveAssemblyReference.cache
+C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.Properties.Resources.resources
+C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.csproj.GenerateResource.Cache
+C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.csproj.CoreCompileInputs.cache
+C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.exe
+C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.pdb
+C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.Form1.resources
