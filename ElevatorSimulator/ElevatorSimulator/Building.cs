@@ -84,11 +84,13 @@ namespace ElevatorSimulator
                 floorList.Add(floor);
             }
             Point position = new Point(10,10);
+            int j = 1;
             for (int i = 1; i <= numberOfElevators; i++)
             {
-                Elevator elevator = new Elevator(1000, 10, 10, 1, 1, Human.Direction.nowhere, 1, position, Elevator.Door.open, Elevator.Lock.unlocked, ahoj);
+                Elevator elevator = new Elevator(1000, 10, 10, 1, 1, Human.Direction.nowhere, 1, position, Elevator.Door.open, Elevator.Lock.unlocked, ahoj, j);
                 elevatorList.Add(elevator);
                 position.X += 20;
+                j++;
                 Thread.Sleep(20);
             }
             MessageBox.Show("Floors: " + NumberOfFloors + "\n" + "Elevators: " + NumberOfElevators + "\n" + "Lenght of one floor: " + floor.LenghtOfOneFloor() + "\n" +  "Total lenght: " + TotalLenght + "\n");

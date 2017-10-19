@@ -27,6 +27,7 @@ namespace ElevatorSimulator
         List<int> queue;
         Lock locked;
         Random rnd = new Random();
+        Timer timer = new Timer();
         #region Properties
         public int Number
         {
@@ -186,52 +187,75 @@ namespace ElevatorSimulator
             }
             if (this.queue.First() == this.floor)
             {
-                this.queue.Remove(this.queue.First());
+                timer.Interval = 1000;
+                timer.Tick += Timer_Tick;
+                timer.Start();
                 return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + this.queue.First() + ", All queue: " + output);
             }
             else if (this.queue.First() > this.floor)
             {
-                this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.queue.First());
+                if (this.queue.First() - this.floor == 1)
+                {
+                    this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.queue.First(), 1);
+                }
+                else
+                {
+                    this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.queue.First(), 5);
+                }
                 return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + this.queue.First() + ", All queue: " + output);
             }
             else if (this.queue.First() < this.floor)
             {
-                this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.queue.First());
+                if (this.floor - this.queue.First() == 1)
+                {
+                    this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.queue.First(), 1);
+                }
+                else
+                {
+                this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.queue.First(), 5);
+                }
                 return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + this.queue.First() + ", All queue: " + output);
             }
             return "";
         }
-        public void ElevatorStepUp(int floorHeight, int buildingFloor)
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            this.queue.Remove(this.queue.First());
+            timer.Stop();
+        }
+
+        public void ElevatorStepUp(int floorHeight, int buildingFloor, int speed)
         {
             if (this.floor < buildingFloor)
             {
-                this.position.Y += 2;
-                step++;
-                if (step == 5)
+                this.position.Y += speed;
+                step += speed;
+                if (step == floorHeight)
                 {
                     step = 0;
                     floor++;  
                 }
             }
         }
-        public void ElevatorStepDown(int floorHeight, int buildingFloor)
+        public void ElevatorStepDown(int floorHeight, int buildingFloor, int speed)
         {
             if (this.floor > buildingFloor)
             {
-                this.position.Y -= 2;
-                step++;
-                if (step == 5)
+                this.position.Y -= speed;
+                step += speed;
+                if (step == floorHeight)
                 {
                     step = 0;
                     floor--;
                 }
             }
         }
-        public Elevator (int maxLoad, int maxCapacity, int maxSpeed, int acceleration, int floor, Human.Direction direction, int weight, Point position, Door door, Lock locked, List<int> queue)
+        public Elevator (int maxLoad, int maxCapacity, int maxSpeed, int acceleration, int floor, Human.Direction direction, int weight, Point position, Door door, Lock locked, List<int> queue, int number)
         {
             queue = new List<int>();
             queue.Add(4);
-            this.number++;
+            this.number = number;
             this.MaxLoad = maxLoad;
             this.MaxCapacity = maxCapacity;
             this.MaxSpeed = maxSpeed;
