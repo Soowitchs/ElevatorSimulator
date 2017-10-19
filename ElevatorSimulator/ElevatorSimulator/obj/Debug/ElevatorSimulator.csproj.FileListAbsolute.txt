@@ -16,3 +16,12 @@ C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\o
 C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.exe
 C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.pdb
 C:\Users\Ondřej\Desktop\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.Form1.resources
+C:\Users\Soowi\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\bin\Debug\ElevatorSimulator.exe.config
+C:\Users\Soowi\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.exe
+C:\Users\Soowi\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.pdb
+C:\Users\Soowi\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\bin\Debug\ElevatorSimulator.exe
+C:\Users\Soowi\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\bin\Debug\ElevatorSimulator.pdb
+C:\Users\Soowi\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.csprojResolveAssemblyReference.cache
+C:\Users\Soowi\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.Form1.resources
+C:\Users\Soowi\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.Properties.Resources.resources
+C:\Users\Soowi\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.csproj.GenerateResource.Cache

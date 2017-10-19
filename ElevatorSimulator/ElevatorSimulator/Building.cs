@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace ElevatorSimulator
 {
@@ -88,8 +89,9 @@ namespace ElevatorSimulator
                 Elevator elevator = new Elevator(1000, 10, 10, 1, 1, Human.Direction.nowhere, 1, position, Elevator.Door.open, Elevator.Lock.unlocked, ahoj);
                 elevatorList.Add(elevator);
                 position.X += 20;
+                Thread.Sleep(20);
             }
-            MessageBox.Show("Floors: " + NumberOfFloors + "\n" + "Elevators: " + elevatorList.Count() + "\n" + "Lenght of one floor: " + floor.LenghtOfOneFloor() + "\n" +  "Total lenght: " + TotalLenght + "\n");
+            MessageBox.Show("Floors: " + NumberOfFloors + "\n" + "Elevators: " + NumberOfElevators + "\n" + "Lenght of one floor: " + floor.LenghtOfOneFloor() + "\n" +  "Total lenght: " + TotalLenght + "\n");
         }
     }
 }

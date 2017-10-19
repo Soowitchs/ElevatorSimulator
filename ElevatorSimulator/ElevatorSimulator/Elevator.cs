@@ -4,14 +4,16 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ElevatorSimulator
 {
     class Elevator
     {
-        int number;
+        int number = 0;
         public enum Door { open, closed}
         public enum Lock { unlocked, locked}
+        int step = 0;
         int maxLoad;
         int maxCapacity;
         int maxSpeed;
@@ -22,8 +24,9 @@ namespace ElevatorSimulator
         Point position;
         Human.Direction direction;
         Door door;
-        List<int> queue = new List<int>();
+        List<int> queue;
         Lock locked;
+        Random rnd = new Random();
         #region Properties
         public int Number
         {
@@ -164,26 +167,37 @@ namespace ElevatorSimulator
                 position = value;
             }
         }
-        
+
         #endregion
+        public int Rnd(Building building)
+        {
+            return rnd.Next(1, building.NumberOfFloors);
+        }
         public string FloorCheck(Building building)
         {
-            Random rnd = new Random();
-            queue.Add(rnd.Next(1, building.NumberOfFloors));
-            if (queue.First() == this.floor)
+            if (queue.Count < 10)
             {
-                queue.Remove(queue.First());
-                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + queue.First());
+                this.queue.Add(Rnd(building)); 
             }
-            else if (queue.First() > this.floor)
+            string output = "";
+            foreach (int queueFloors in queue)
             {
-                this.ElevatorStepUp((int)building.LenghtOfOneFloor, queue.First());
-                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + queue.First());
+                output += queueFloors + ";";
             }
-            else if (queue.First() < this.floor)
+            if (this.queue.First() == this.floor)
             {
-                this.ElevatorStepDown((int)building.LenghtOfOneFloor, queue.First());
-                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + queue.First());
+                this.queue.Remove(this.queue.First());
+                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + this.queue.First() + ", All queue: " + output);
+            }
+            else if (this.queue.First() > this.floor)
+            {
+                this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.queue.First());
+                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + this.queue.First() + ", All queue: " + output);
+            }
+            else if (this.queue.First() < this.floor)
+            {
+                this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.queue.First());
+                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + this.queue.First() + ", All queue: " + output);
             }
             return "";
         }
@@ -191,22 +205,33 @@ namespace ElevatorSimulator
         {
             if (this.floor < buildingFloor)
             {
-                this.position.Y += floorHeight;
-                floor++; 
+                this.position.Y += 2;
+                step++;
+                if (step == 5)
+                {
+                    step = 0;
+                    floor++;  
+                }
             }
         }
-        
         public void ElevatorStepDown(int floorHeight, int buildingFloor)
         {
             if (this.floor > buildingFloor)
             {
-
-                this.position.Y -= floorHeight;
-                floor--;
+                this.position.Y -= 2;
+                step++;
+                if (step == 5)
+                {
+                    step = 0;
+                    floor--;
+                }
             }
         }
         public Elevator (int maxLoad, int maxCapacity, int maxSpeed, int acceleration, int floor, Human.Direction direction, int weight, Point position, Door door, Lock locked, List<int> queue)
         {
+            queue = new List<int>();
+            queue.Add(4);
+            this.number++;
             this.MaxLoad = maxLoad;
             this.MaxCapacity = maxCapacity;
             this.MaxSpeed = maxSpeed;
@@ -218,6 +243,10 @@ namespace ElevatorSimulator
             this.door = door;
             this.locked = locked;
             this.queue = queue;
+        }
+        public override string ToString()
+        {
+            return "Výtah číslo: " + this.number;
         }
     }
 }
