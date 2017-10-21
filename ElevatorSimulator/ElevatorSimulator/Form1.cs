@@ -23,7 +23,7 @@ namespace ElevatorSimulator
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             InitializeComponent();
-            for (int i = 1; i <= 1; i++)
+            for (int i = 1; i <= 2; i++)
             {
                 buildingList.Add(new Building(10, 20, 1, 1, i));
             }
@@ -77,11 +77,14 @@ namespace ElevatorSimulator
         }
         private void timer2_Tick(object sender, EventArgs e)
         {
-            foreach (Elevator elevator in building.elevatorList)
+            foreach (Building building in buildingList)
             {
-                if (elevator.humanList.Count < 4)
+                foreach (Elevator elevator in building.elevatorList)
                 {
-                    building.GenerateHuman();
+                    if (elevator.humanList.Count < 4)
+                    {
+                        building.GenerateHuman();
+                    }
                 } 
             }
         }
