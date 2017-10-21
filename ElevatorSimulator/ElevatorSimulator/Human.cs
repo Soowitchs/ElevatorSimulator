@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace ElevatorSimulator
 {
@@ -13,6 +14,9 @@ namespace ElevatorSimulator
         int weight;
         int startFloor;
         int endFloor;
+        int buildingNumber;
+        Point position;
+        Floor floor;
         public int Weight
         {
             get
@@ -55,12 +59,39 @@ namespace ElevatorSimulator
                 }
             }
         }
-        public Human (Direction direction, int weight, int startFloot, int endFloor)
+        public int BuildingNumber
         {
+            get
+            {
+                return buildingNumber;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    buildingNumber = value;
+                }
+            }
+        }
+        public Point Position
+        {
+            get
+            {
+                return new Point(buildingNumber*20, startFloor * 20);
+            }
+            set
+            {
+                position = value;
+            }
+        }
+        public Human (Direction direction, int weight, int startFloor, int endFloor, int buildingNumber, Floor floor)
+        {
+            this.floor = floor;
             this.direction = direction;
             this.Weight = weight;
             this.StartFloor = startFloor;
             this.EndFloor = endFloor;
+            this.BuildingNumber = buildingNumber;
         }
     }
 }

@@ -24,10 +24,9 @@ namespace ElevatorSimulator
         Point position;
         Human.Direction direction;
         Door door;
-        List<int> queue;
+        public List<Human> humanList = new List<Human>();
         Lock locked;
         Random rnd = new Random();
-        Timer timer = new Timer();
         #region Properties
         public int Number
         {
@@ -170,59 +169,77 @@ namespace ElevatorSimulator
         }
 
         #endregion
+        public List<int> Queue
+        {
+            get
+            {
+                if (humanList.Count() == 0)
+                {
+                    List<int> output = new List<int>();
+                    output.Add(4);
+                    return output;
+                }
+                else
+                {
+                    List<int> output = new List<int>();
+                    foreach (Human human in humanList)
+                    {
+                        output.Add(human.StartFloor);
+                        output.Add(human.EndFloor);
+                    }
+                    return output;
+                }
+            }
+            set
+            {
+                Queue = value;
+            }
+        }
         public int Rnd(Building building)
         {
-            return rnd.Next(1, building.NumberOfFloors);
+            return rnd.Next(1, building.NumberOfFloors+1);
         }
         public string FloorCheck(Building building)
         {
-            if (queue.Count < 10)
-            {
-                this.queue.Add(Rnd(building)); 
-            }
             string output = "";
-            foreach (int queueFloors in queue)
+            foreach (int queueFloors in Queue)
             {
                 output += queueFloors + ";";
             }
-            if (this.queue.First() == this.floor)
+            if (this.Queue.First() == this.floor && this.Queue.Count > 1)
             {
-                timer.Interval = 1000;
-                timer.Tick += Timer_Tick;
-                timer.Start();
-                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + this.queue.First() + ", All queue: " + output);
-            }
-            else if (this.queue.First() > this.floor)
-            {
-                if (this.queue.First() - this.floor == 1)
+                humanList.First().StartFloor = humanList.First().EndFloor;
+                if (humanList.First().EndFloor == this.floor)
                 {
-                    this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.queue.First(), 1);
+                    humanList.Remove(humanList.First());
+                }
+                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
+            }
+            else if (this.Queue.First() > this.floor)
+            {
+                if (this.Queue.First() - this.floor == 1)
+                {
+                    this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.Queue.First(), 1);
                 }
                 else
                 {
-                    this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.queue.First(), 5);
+                    this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.Queue.First(), 2);
                 }
-                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + this.queue.First() + ", All queue: " + output);
+                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
             }
-            else if (this.queue.First() < this.floor)
+            else if (this.Queue.First() < this.floor)
             {
-                if (this.floor - this.queue.First() == 1)
+                if (this.floor - this.Queue.First() == 1)
                 {
-                    this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.queue.First(), 1);
+                    this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.Queue.First(), 1);
                 }
                 else
                 {
-                this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.queue.First(), 5);
+                this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.Queue.First(), 2);
                 }
-                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", queue: " + this.queue.First() + ", All queue: " + output);
+                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
             }
             return "";
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            this.queue.Remove(this.queue.First());
-            timer.Stop();
         }
 
         public void ElevatorStepUp(int floorHeight, int buildingFloor, int speed)
@@ -251,10 +268,8 @@ namespace ElevatorSimulator
                 }
             }
         }
-        public Elevator (int maxLoad, int maxCapacity, int maxSpeed, int acceleration, int floor, Human.Direction direction, int weight, Point position, Door door, Lock locked, List<int> queue, int number)
+        public Elevator (int maxLoad, int maxCapacity, int maxSpeed, int acceleration, int floor, Human.Direction direction, int weight, Point position, Door door, Lock locked, int number)
         {
-            queue = new List<int>();
-            queue.Add(4);
             this.number = number;
             this.MaxLoad = maxLoad;
             this.MaxCapacity = maxCapacity;
@@ -266,7 +281,6 @@ namespace ElevatorSimulator
             this.position = position;
             this.door = door;
             this.locked = locked;
-            this.queue = queue;
         }
         public override string ToString()
         {
