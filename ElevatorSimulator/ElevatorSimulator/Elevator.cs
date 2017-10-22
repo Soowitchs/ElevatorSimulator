@@ -195,16 +195,12 @@ namespace ElevatorSimulator
                 Queue = value;
             }
         }
-        public int Rnd(Building building)
-        {
-            return rnd.Next(1, building.NumberOfFloors+1);
-        }
         public string FloorCheck(Building building)
         {
             string output = "";
             foreach (int queueFloors in Queue)
             {
-                output += queueFloors + ";";
+               output += queueFloors + ";";
             }
             if (this.Queue.First() == this.floor && this.Queue.Count > 1)
             {

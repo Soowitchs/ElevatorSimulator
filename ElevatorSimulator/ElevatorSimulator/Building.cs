@@ -121,15 +121,15 @@ namespace ElevatorSimulator
                 elevatorList.Add(elevator);
                 position.X += 20;
                 j++;
-                Thread.Sleep(20);
+                Thread.Sleep(15);
             }
             //MessageBox.Show("Floors: " + NumberOfFloors + "\n" + "Elevators: " + NumberOfElevators + "\n" + "Lenght of one floor: " + floor.LenghtOfOneFloor() + "\n" +  "Total lenght: " + TotalLenght + "\n");
         }
         public void GenerateHuman()
         {
             rnd = new Random();
-            Thread.Sleep(20);
-            human = new Human(Human.Direction.down, 50, rnd.Next(1, 10), rnd.Next(1, 10), buildingNumber, floor);
+            Thread.Sleep(15);
+            human = new Human(Human.Direction.down, 50, rnd.Next(1, NumberOfFloors), rnd.Next(1, NumberOfFloors), buildingNumber, floor);
             elevator.humanList.Add(human);
             //MessageBox.Show(this.humanList.First().Position.ToString() + " " + rnd.Next(1, this.NumberOfElevators).ToString());
         }

@@ -18,14 +18,15 @@ namespace ElevatorSimulator
         Building building;
         Human human;
         Random rnd = new Random();
+        int i = 0;
         public Form1()
         {
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             InitializeComponent();
-            for (int i = 1; i <= 2; i++)
+            for (int i = 1; i <= 10; i++)
             {
-                buildingList.Add(new Building(10, 20, 1, 1, i));
+                buildingList.Add(new Building(20, 20, 10, 1, i));
             }
             timer1.Start();
             timer2.Start();
@@ -46,6 +47,7 @@ namespace ElevatorSimulator
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.Refresh();
+            i++;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -68,15 +70,17 @@ namespace ElevatorSimulator
                     richTextBox1.Text += elev.FloorCheck(building) + "\n";
                     foreach (Human human in elev.humanList)
                     {
-                        Rectangle Human = new Rectangle(human.Position.X, human.Position.Y, 5, 5);
-                        kp.DrawEllipse(Pens.Black, Human);
-                        richTextBox1.Text += "Pozice: " + human.Position.ToString() + ", aktuální patro: " + human.StartFloor + ", cílové patro: " + human.EndFloor + "\n";
+                        Rectangle Human = new Rectangle(human.Position.X + 2, human.Position.Y + 2, 5, 5);
+                        kp.FillEllipse(Brushes.Blue, Human);
+                        //richTextBox1.Text += "Pozice: " + human.Position.ToString() + ", aktuální patro: " + human.StartFloor + ", cílové patro: " + human.EndFloor + "\n";
                     }
                 }
             }
         }
         private void timer2_Tick(object sender, EventArgs e)
         {
+            label1.Text = (i/2).ToString();
+            i = 0;
             foreach (Building building in buildingList)
             {
                 foreach (Elevator elevator in building.elevatorList)
