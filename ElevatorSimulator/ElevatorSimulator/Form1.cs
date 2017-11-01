@@ -113,12 +113,45 @@ namespace ElevatorSimulator
 
         private void button2_Click(object sender, EventArgs e)
         {
-            timer1.Interval += 1;
+            timer1.Interval += 5;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            timer1.Interval -= 1;
+            if (timer1.Interval > 5)
+            {
+                timer1.Interval -= 5;
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            timer2.Interval += 500;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            
+            
+            timer2.Interval -= 500;
+           
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (timer2.Enabled == false)
+            {
+                timer2.Start();
+            }
+            else if (timer2.Enabled == true)
+            {
+                timer2.Stop();
+            }
         }
     }
 }
