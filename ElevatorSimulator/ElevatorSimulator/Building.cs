@@ -114,22 +114,19 @@ namespace ElevatorSimulator
                 floorList.Add(floor);
             }
             Point position = new Point(20*buildingNumber,20);
-            int j = 1;
             for (int i = 1; i <= numberOfElevators; i++)
             {
-                elevator = new Elevator(1000, 10, 10, 1, 1, Human.Direction.nowhere, 1, position, Elevator.Door.open, Elevator.Lock.unlocked, j);
+                elevator = new Elevator(1000, 10, 10, 1, 1, Human.Direction.nowhere, 1, position, Elevator.Door.open, Elevator.Lock.unlocked, buildingNumber);
                 elevatorList.Add(elevator);
                 position.X += 20;
-                j++;
-                Thread.Sleep(15);
             }
             //MessageBox.Show("Floors: " + NumberOfFloors + "\n" + "Elevators: " + NumberOfElevators + "\n" + "Lenght of one floor: " + floor.LenghtOfOneFloor() + "\n" +  "Total lenght: " + TotalLenght + "\n");
         }
         public void GenerateHuman()
         {
             rnd = new Random();
-            Thread.Sleep(15);
-            human = new Human(Human.Direction.down, 50, rnd.Next(1, NumberOfFloors), rnd.Next(1, NumberOfFloors), buildingNumber, floor);
+            //human = new Human(Human.Direction.down, 50, 4, 4, buildingNumber, floor);
+            human = new Human(Human.Direction.down, 50, rnd.Next(1, NumberOfFloors+1), rnd.Next(1, NumberOfFloors+1), buildingNumber, floor);
             elevator.humanList.Add(human);
             //MessageBox.Show(this.humanList.First().Position.ToString() + " " + rnd.Next(1, this.NumberOfElevators).ToString());
         }

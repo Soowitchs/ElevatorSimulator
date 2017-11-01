@@ -21,6 +21,7 @@ namespace ElevatorSimulator
         int floor;
         int capacity;
         int weight;
+        int fixus;
         Point position;
         Human.Direction direction;
         Door door;
@@ -204,16 +205,25 @@ namespace ElevatorSimulator
             }
             if (this.Queue.First() == this.floor && this.Queue.Count > 1)
             {
-                humanList.First().StartFloor = humanList.First().EndFloor;
-                if (humanList.First().EndFloor == this.floor)
+                //humanList.First().StartFloor = humanList.First().EndFloor;
+                if (humanList.First().StartFloor == this.floor)
                 {
                     humanList.Remove(humanList.First());
+                    if (this.Queue.First() < this.floor)
+                    {
+                        fixus = this.floor - 1;
+                    }
+                    else if (this.Queue.First() >this.floor)
+                    {
+                        fixus = this.floor + 1;
+                    }
+
                 }
-                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
+                return (this.ToString() + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
             }
             else if (this.Queue.First() > this.floor)
             {
-                if (this.Queue.First() - this.floor == 1)
+                if (this.Queue.First() - this.floor == 1 || fixus - this.floor == 1)
                 {
                     this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.Queue.First(), 1);
                 }
@@ -225,7 +235,7 @@ namespace ElevatorSimulator
             }
             else if (this.Queue.First() < this.floor)
             {
-                if (this.floor - this.Queue.First() == 1)
+                if (this.floor - this.Queue.First() == 1 || this.floor - fixus == 1)
                 {
                     this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.Queue.First(), 1);
                 }
@@ -266,7 +276,7 @@ namespace ElevatorSimulator
         }
         public Elevator (int maxLoad, int maxCapacity, int maxSpeed, int acceleration, int floor, Human.Direction direction, int weight, Point position, Door door, Lock locked, int number)
         {
-            this.number = number;
+            this.Number = number;
             this.MaxLoad = maxLoad;
             this.MaxCapacity = maxCapacity;
             this.MaxSpeed = maxSpeed;
