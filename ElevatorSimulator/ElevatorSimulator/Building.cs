@@ -61,7 +61,10 @@ namespace ElevatorSimulator
             {
                 return floorList.Count();
             }
-            set{}
+            set
+            {
+
+            }
         }
         public double TotalLenght
         {
@@ -85,6 +88,7 @@ namespace ElevatorSimulator
             }
             set
             {
+
             }
         }
         public int Width

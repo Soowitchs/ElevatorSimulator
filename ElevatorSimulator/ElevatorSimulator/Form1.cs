@@ -17,7 +17,6 @@ namespace ElevatorSimulator
         Graphics kp;
         List<Building> buildingList = new List<Building>();
         Building building;
-        Human human;
         Random rnd = new Random();
         Pen pen = new Pen(Color.Black, 2);
         SolidBrush brush = new SolidBrush(Color.Black);
@@ -165,7 +164,7 @@ namespace ElevatorSimulator
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //kontrola a zmmenšování intervalu timeru
+            //kontrola a zmenšování intervalu timeru
             if (timer1.Interval > 5)
             {
                 timer1.Interval -= 5;
