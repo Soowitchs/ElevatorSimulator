@@ -13,6 +13,7 @@ namespace ElevatorSimulator
 
     public partial class Form1 : Form
     {
+        //Vytvoření globálních proměnných
         Graphics kp;
         List<Building> buildingList = new List<Building>();
         Building building;
@@ -24,42 +25,35 @@ namespace ElevatorSimulator
         bool test = true;
         public Form1()
         {
+            //Maximalizace programu, odstranění horního panelu
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             InitializeComponent();
+            //Inicializace Budov a jejich uložení do listu
             for (int i = 1; i <= 10; i++)
             {
                 buildingList.Add(new Building(20, 20, 10, 1, i, false));
             }
+            //nastavení vstupu na list
             comboBox1.DataSource = buildingList;
             timer1.Start();
             timer2.Start();
         }
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-        }
-        private void ElevatorTick(Elevator elev, Building building)
-        {
-            /*richTextBox1.Text = "";
-            string output = "";
-            foreach (Elevator elevator in building.elevatorList)
-            {
-                output += elevator.FloorCheck(building) + "       " + building.queue + "\n";
-            }
-            richTextBox1.Text = output;*/
-        }
         private void timer1_Tick(object sender, EventArgs e)
         { 
+            //timer na běh celého programu
             this.Refresh();
             i++;
         }
 
-        private async void Form1_Paint(object sender, PaintEventArgs e)
+        private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            //vykreslování
             richTextBox1.Text = "";
             kp = e.Graphics;
             foreach (Building building in buildingList)
             {
+                //pokud je budova vybraná v comboboxu, změní se její barva na modrou
                 if (building.Selected)
                 {
                     pen.Color = Color.Blue;
@@ -69,19 +63,22 @@ namespace ElevatorSimulator
                     pen.Color = Color.Black;
                 }
                 this.building = building;
+                //Pro každou budovu se vykreslí její patra
                 foreach (Floor floors in building.floorList)
                 {
                     Rectangle floor = new Rectangle(floors.Position.Y, floors.Position.X, building.Width, (int)building.LenghtOfOneFloor);
                     kp.DrawRectangle(pen, floor);
-                    //richTextBox1.Text += floor.Location.ToString();
                 }
+                //pro každou budovu se vykreslí výtahy
                 foreach (Elevator elev in building.elevatorList)
                 {
                     Rectangle elevator = new Rectangle(building.Position.X + 1, elev.Position.Y + 1, elev.Width - 1, (int)building.LenghtOfOneFloor - 1);
+                    //pokud jsou zavřené dveře u výtahu, výtah je červený
                     if (elev.door == Elevator.Door.closed)
                     {
                         kp.FillRectangle(Brushes.Red, elevator);
                     }
+                    //Tohle musím ještě dodělat
                     else if (elev.door == Elevator.Door.open)
                     {
                             if (elev.Width >= 0)
@@ -106,10 +103,14 @@ namespace ElevatorSimulator
                         }
                         kp.FillRectangle(Brushes.Green, elevator);
                     }
+                    //posouvání výtahu
                     elev.FloorCheck(building);
+                    //výpis do richtextboxu
                     richTextBox1.Text += elev.Output() + "\n";
+                    //vykreslení lidí
                     foreach (Human human in elev.humanList)
                     {
+                        //Pokud je vybraný, změní se barva zelenou
                         if (human.Selected)
                         {
                             brush.Color = Color.Green;
@@ -120,19 +121,21 @@ namespace ElevatorSimulator
                         }
                         Rectangle Human = new Rectangle(human.Position.X + 5, human.Position.Y + 5, 10, 10);
                         kp.FillEllipse(brush, Human);
-                        //richTextBox1.Text += "Pozice: " + human.Position.ToString() + ", aktuální patro: " + human.StartFloor + ", cílové patro: " + human.EndFloor + "\n";
                     }
                 }
             }
         }
         private async void timer2_Tick(object sender, EventArgs e)
         {
-            label1.Text = (i/2).ToString();
+            //fps počítadlo
+            label1.Text = i.ToString();
             i = 0;
+            //generování lidí
             foreach (Building building in buildingList)
             {
                 foreach (Elevator elevator in building.elevatorList)
                 {
+                    //pokud má v seznamu míň jak 4 lidi, vygeneruje se další
                     if (elevator.humanList.Count < 4)
                     {
                         building.GenerateHuman();
@@ -141,13 +144,9 @@ namespace ElevatorSimulator
                 } 
             }
         }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
+            //vypínání a zapínání timeru
             if (timer1.Enabled == false)
             {
                 timer1.Start();
@@ -160,11 +159,13 @@ namespace ElevatorSimulator
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //zvětšování intervatu timeru
             timer1.Interval += 5;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            //kontrola a zmmenšování intervalu timeru
             if (timer1.Interval > 5)
             {
                 timer1.Interval -= 5;
@@ -173,6 +174,7 @@ namespace ElevatorSimulator
 
         private void button16_Click(object sender, EventArgs e)
         {
+            //ukončení programu
             Environment.Exit(0);
         }
 
@@ -183,8 +185,6 @@ namespace ElevatorSimulator
 
         private void button7_Click(object sender, EventArgs e)
         {
-
-
             if (timer2.Interval > 100)
             {
                 timer2.Interval -= 100;
@@ -206,6 +206,7 @@ namespace ElevatorSimulator
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //načítání výtahů do comboboxu2 po vybrání v comboboxu1
             foreach (Building item in buildingList)
             {
                 item.Selected = false;
