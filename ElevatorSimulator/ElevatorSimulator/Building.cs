@@ -152,7 +152,7 @@ namespace ElevatorSimulator
         }
         public override string ToString()
         {
-            return "Budova číslo: " + buildingNumber;
+            return "Building number: " + buildingNumber;
         }
     }
 }
