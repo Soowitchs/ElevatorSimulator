@@ -18,17 +18,20 @@ namespace ElevatorSimulator
         Building building;
         Human human;
         Random rnd = new Random();
+        Pen pen = new Pen(Color.Black, 2);
+        SolidBrush brush = new SolidBrush(Color.Black);
         int i = 0;
+        bool test = true;
         public Form1()
         {
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             InitializeComponent();
-            for (int i = 1; i <= 1; i++)
+            for (int i = 1; i <= 10; i++)
             {
-                buildingList.Add(new Building(20, 20, 10, 1, i));
-
+                buildingList.Add(new Building(20, 20, 10, 1, i, false));
             }
+            comboBox1.DataSource = buildingList;
             timer1.Start();
             timer2.Start();
         }
@@ -51,28 +54,72 @@ namespace ElevatorSimulator
             i++;
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
+        private async void Form1_Paint(object sender, PaintEventArgs e)
         {
             richTextBox1.Text = "";
             kp = e.Graphics;
             foreach (Building building in buildingList)
             {
+                if (building.Selected)
+                {
+                    pen.Color = Color.Blue;
+                }
+                else
+                {
+                    pen.Color = Color.Black;
+                }
                 this.building = building;
                 foreach (Floor floors in building.floorList)
                 {
                     Rectangle floor = new Rectangle(floors.Position.Y, floors.Position.X, building.Width, (int)building.LenghtOfOneFloor);
-                    kp.DrawRectangle(Pens.Black, floor);
+                    kp.DrawRectangle(pen, floor);
                     //richTextBox1.Text += floor.Location.ToString();
                 }
                 foreach (Elevator elev in building.elevatorList)
                 {
-                    Rectangle elevator = new Rectangle(building.Position.X+1, elev.Position.Y+1, building.Width-1, (int)building.LenghtOfOneFloor-1);
-                    kp.FillRectangle(Brushes.Red, elevator);
-                    richTextBox1.Text += elev.FloorCheck(building) + "\n";
+                    Rectangle elevator = new Rectangle(building.Position.X + 1, elev.Position.Y + 1, elev.Width - 1, (int)building.LenghtOfOneFloor - 1);
+                    if (elev.door == Elevator.Door.closed)
+                    {
+                        kp.FillRectangle(Brushes.Red, elevator);
+                    }
+                    else if (elev.door == Elevator.Door.open)
+                    {
+                            if (elev.Width >= 0)
+                            {
+                                elev.Width--;
+                            }
+                            else if(elev.Width == 0)
+                            {
+                                test = false;
+                            }
+                        while (!test)
+                        {
+                            if (elev.Width <= 20)
+                            {
+                                elev.Width++;
+                            }
+                            else if (elev.Width == 20)
+                            {
+                                elev.door = Elevator.Door.closed;
+                                test = true;
+                            }
+                        }
+                        kp.FillRectangle(Brushes.Green, elevator);
+                    }
+                    elev.FloorCheck(building);
+                    richTextBox1.Text += elev.Output() + "\n";
                     foreach (Human human in elev.humanList)
                     {
-                        Rectangle Human = new Rectangle(human.Position.X + 2, human.Position.Y + 2, 5, 5);
-                        kp.FillEllipse(Brushes.Blue, Human);
+                        if (human.Selected)
+                        {
+                            brush.Color = Color.Green;
+                        }
+                        else
+                        {
+                            brush.Color = Color.Black;
+                        }
+                        Rectangle Human = new Rectangle(human.Position.X + 5, human.Position.Y + 5, 10, 10);
+                        kp.FillEllipse(brush, Human);
                         //richTextBox1.Text += "Pozice: " + human.Position.ToString() + ", aktuální patro: " + human.StartFloor + ", cílové patro: " + human.EndFloor + "\n";
                     }
                 }
@@ -136,10 +183,13 @@ namespace ElevatorSimulator
 
         private void button7_Click(object sender, EventArgs e)
         {
-            
-            
-            timer2.Interval -= 500;
-           
+
+
+            if (timer2.Interval > 100)
+            {
+                timer2.Interval -= 100;
+            }
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -152,6 +202,16 @@ namespace ElevatorSimulator
             {
                 timer2.Stop();
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (Building item in buildingList)
+            {
+                item.Selected = false;
+            }
+            comboBox2.DataSource = (comboBox1.SelectedItem as Building).elevatorList;
+            (comboBox1.SelectedItem as Building).Selected = true;
         }
     }
 }

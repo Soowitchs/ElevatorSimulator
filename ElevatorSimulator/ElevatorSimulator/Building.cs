@@ -16,12 +16,23 @@ namespace ElevatorSimulator
         public Point position;
         Floor floor;
         double totalLenght;
-        int numberOfElevators;
         int buildingNumber;
         int width;
         Random rnd;
         Human human;
         Elevator elevator;
+        bool selected;
+        public bool Selected
+        {
+            get
+            {
+                return selected;
+            }
+            set
+            {
+                selected = value;
+            }
+        }
         public Point Position
         {
             get
@@ -104,8 +115,9 @@ namespace ElevatorSimulator
                 }
             }
         }
-        public Building (int numberOfFloors, double lenghtOfFloors, double lenghtOfMezzanineFloor, int numberOfElevators, int buildingNumber)
+        public Building (int numberOfFloors, double lenghtOfFloors, double lenghtOfMezzanineFloor, int numberOfElevators, int buildingNumber, bool selected)
         {
+            this.Selected = selected;
             this.width = 20;
             this.BuildingNumber = buildingNumber;
             for (int i = 1; i <= numberOfFloors; i++)
@@ -116,7 +128,7 @@ namespace ElevatorSimulator
             Point position = new Point(20*buildingNumber,20);
             for (int i = 1; i <= numberOfElevators; i++)
             {
-                elevator = new Elevator(1000, 10, 10, 1, 1, Human.Direction.nowhere, 1, position, Elevator.Door.open, Elevator.Lock.unlocked, buildingNumber);
+                elevator = new Elevator(1000, 10, 10, 1, 1, Human.Direction.nowhere, 1, position, Elevator.Door.closed ,Elevator.Lock.unlocked, buildingNumber, this, 19);
                 elevatorList.Add(elevator);
                 position.X += 20;
             }
@@ -126,13 +138,17 @@ namespace ElevatorSimulator
         {
             rnd = new Random();
             //human = new Human(Human.Direction.down, 50, 4, 4, buildingNumber, floor);
-            human = new Human(Human.Direction.down, 50, rnd.Next(1, NumberOfFloors+1), rnd.Next(1, NumberOfFloors+1), buildingNumber, floor);
+            human = new Human(Human.Direction.down, 50, rnd.Next(1, NumberOfFloors + 1), rnd.Next(1, NumberOfFloors + 1), buildingNumber, floor, false);
             elevator.humanList.Add(human);
             //MessageBox.Show(this.humanList.First().Position.ToString() + " " + rnd.Next(1, this.NumberOfElevators).ToString());
         }
         public Building()
         {
 
+        }
+        public override string ToString()
+        {
+            return "Budova číslo: " + buildingNumber;
         }
     }
 }

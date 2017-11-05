@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace ElevatorSimulator
 {
@@ -13,6 +14,7 @@ namespace ElevatorSimulator
         int number = 0;
         public enum Door { open, closed}
         public enum Lock { unlocked, locked}
+        int width;
         int step = 0;
         int maxLoad;
         int maxCapacity;
@@ -22,13 +24,28 @@ namespace ElevatorSimulator
         int capacity;
         int weight;
         int fixus;
+        Building building;
         Point position;
         Human.Direction direction;
-        Door door;
+        public Door door;
         public List<Human> humanList = new List<Human>();
         Lock locked;
         Random rnd = new Random();
         #region Properties
+        public int Width
+        {
+            get
+            {
+                return width;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    width = value;
+                }
+            }
+        }
         public int Number
         {
             get
@@ -177,7 +194,7 @@ namespace ElevatorSimulator
                 if (humanList.Count() == 0)
                 {
                     List<int> output = new List<int>();
-                    output.Add(4);
+                    output.Add(1);
                     return output;
                 }
                 else
@@ -196,61 +213,70 @@ namespace ElevatorSimulator
                 Queue = value;
             }
         }
-        public string FloorCheck(Building building)
+        public string Output()
         {
             string output = "";
             foreach (int queueFloors in Queue)
             {
-               output += queueFloors + ";";
+                output += queueFloors + ";";
             }
-            if (this.Queue.First() == this.floor && this.Queue.Count > 1)
+            return (this.ToString() + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
+        }
+        public async void FloorCheck(Building building)
+        {
+            if (this.Queue.Count >= 2)
             {
-                //humanList.First().StartFloor = humanList.First().EndFloor;
-                if (humanList.First().StartFloor == this.floor)
+                if (this.Queue.First() == this.floor)
                 {
-                    humanList.Remove(humanList.First());
-                    if (this.Queue.First() < this.floor)
+                    this.door = Elevator.Door.open;
+                    await Task.Delay(2000);
+                    if (humanList.First().StartFloor == this.floor)
                     {
-                        fixus = this.floor - 1;
+                        humanList.First().Selected = true;
+                        humanList.First().StartFloor = humanList.First().EndFloor;
                     }
-                    else if (this.Queue.First() >this.floor)
+                    if (humanList.First().EndFloor == this.floor)
                     {
-                        fixus = this.floor + 1;
+                        humanList.Remove(humanList.First());
+                        if (this.Queue.First() < this.floor)
+                        {
+                            fixus = this.floor - 1;
+                        }
+                        else if (this.Queue.First() > this.floor)
+                        {
+                            fixus = this.floor + 1;
+                        }
                     }
-
+                    this.door = Elevator.Door.closed;
                 }
-                return (this.ToString() + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
+                else if (this.Queue.First() > this.floor)
+                {
+                    if (this.Queue.First() - this.floor == 1 || fixus - this.floor == 1)
+                    {
+                        this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.Queue.First(), 1);
+                    }
+                    else
+                    {
+                        this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.Queue.First(), 2);
+                    }
+                }
+                else if (this.Queue.First() < this.floor)
+                {
+                    if (this.floor - this.Queue.First() == 1 || this.floor - fixus == 1)
+                    {
+                        this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.Queue.First(), 1);
+                    }
+                    else
+                    {
+                        this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.Queue.First(), 2);
+                    }
+                } 
             }
-            else if (this.Queue.First() > this.floor)
-            {
-                if (this.Queue.First() - this.floor == 1 || fixus - this.floor == 1)
-                {
-                    this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.Queue.First(), 1);
-                }
-                else
-                {
-                    this.ElevatorStepUp((int)building.LenghtOfOneFloor, this.Queue.First(), 2);
-                }
-                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
-            }
-            else if (this.Queue.First() < this.floor)
-            {
-                if (this.floor - this.Queue.First() == 1 || this.floor - fixus == 1)
-                {
-                    this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.Queue.First(), 1);
-                }
-                else
-                {
-                this.ElevatorStepDown((int)building.LenghtOfOneFloor, this.Queue.First(), 2);
-                }
-                return ("Výtah číslo: " + this.Number + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
-            }
-            return "";
         }
 
         public void ElevatorStepUp(int floorHeight, int buildingFloor, int speed)
         {
-            if (this.floor < buildingFloor)
+            if (this.floor < buildingFloor || this.Position.Y < this.floor*building.LenghtOfOneFloor)
             {
                 this.position.Y += speed;
                 step += speed;
@@ -263,7 +289,7 @@ namespace ElevatorSimulator
         }
         public void ElevatorStepDown(int floorHeight, int buildingFloor, int speed)
         {
-            if (this.floor > buildingFloor)
+            if (this.floor > buildingFloor || this.Position.Y > this.floor * building.LenghtOfOneFloor)
             {
                 this.position.Y -= speed;
                 step += speed;
@@ -274,8 +300,10 @@ namespace ElevatorSimulator
                 }
             }
         }
-        public Elevator (int maxLoad, int maxCapacity, int maxSpeed, int acceleration, int floor, Human.Direction direction, int weight, Point position, Door door, Lock locked, int number)
+        public Elevator (int maxLoad, int maxCapacity, int maxSpeed, int acceleration, int floor, Human.Direction direction, int weight, Point position, Door door, Lock locked, int number, Building building, int width)
         {
+            this.Width = width;
+            this.building = building;
             this.Number = number;
             this.MaxLoad = maxLoad;
             this.MaxCapacity = maxCapacity;

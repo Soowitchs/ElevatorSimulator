@@ -15,8 +15,20 @@ namespace ElevatorSimulator
         int startFloor;
         int endFloor;
         int buildingNumber;
+        bool selected;
         Point position;
         Floor floor;
+        public bool Selected
+        {
+            get
+            {
+                return selected;
+            }
+            set
+            {
+                selected = value;
+            }
+        }
         public int Weight
         {
             get
@@ -84,8 +96,9 @@ namespace ElevatorSimulator
                 position = value;
             }
         }
-        public Human (Direction direction, int weight, int startFloor, int endFloor, int buildingNumber, Floor floor)
+        public Human (Direction direction, int weight, int startFloor, int endFloor, int buildingNumber, Floor floor, bool selected)
         {
+            this.Selected = selected;
             this.floor = floor;
             this.direction = direction;
             this.Weight = weight;
