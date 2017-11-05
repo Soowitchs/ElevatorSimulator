@@ -220,7 +220,7 @@ namespace ElevatorSimulator
             {
                 output += queueFloors + ";";
             }
-            return (this.ToString() + ", patro: " + this.Floor + ". pozice: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
+            return (this.ToString() + ", Floor: " + this.Floor + ". Position: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
         }
         public async void FloorCheck(Building building)
         {
@@ -318,7 +318,7 @@ namespace ElevatorSimulator
         }
         public override string ToString()
         {
-            return "Výtah číslo: " + this.number;
+            return "Elevator number: " + this.number;
         }
     }
 }
