@@ -224,12 +224,12 @@ namespace ElevatorSimulator
         }
         public async void FloorCheck(Building building)
         {
-            if (this.Queue.Count >= 2)
+            if (this.Queue.Count >= 2 && this.door == Elevator.Door.closed)
             {
                 if (this.Queue.First() == this.floor)
                 {
-                    this.door = Elevator.Door.open;
-                    await Task.Delay(2000);
+                    this.downscale();
+                    await Task.Delay(1500);
                     if (humanList.First().StartFloor == this.floor)
                     {
                         humanList.First().Selected = true;
@@ -247,7 +247,8 @@ namespace ElevatorSimulator
                             fixus = this.floor + 1;
                         }
                     }
-                    this.door = Elevator.Door.closed;
+                    this.upscale();
+                    await Task.Delay(1500);
                 }
                 else if (this.Queue.First() > this.floor)
                 {
@@ -319,6 +320,24 @@ namespace ElevatorSimulator
         public override string ToString()
         {
             return "Elevator number: " + this.number;
+        }
+        public async void downscale()
+        {
+            this.door = Elevator.Door.open;
+            for (int i = 19; i > 0; i--)
+            {
+                this.width--;
+                await Task.Delay(50);
+            }
+        }
+        public async void upscale()
+        {
+            for (int i = 0; i < 19; i++)
+            {
+                this.width++;
+                await Task.Delay(50);
+            }
+            this.door = Elevator.Door.closed;
         }
     }
 }

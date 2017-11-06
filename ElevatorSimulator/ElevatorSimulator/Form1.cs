@@ -20,6 +20,7 @@ namespace ElevatorSimulator
         Random rnd = new Random();
         Pen pen = new Pen(Color.Black, 2);
         SolidBrush brush = new SolidBrush(Color.Black);
+        SolidBrush brush2 = new SolidBrush(Color.Red);
         int i = 0;
         bool test = true;
         public Form1()
@@ -29,7 +30,7 @@ namespace ElevatorSimulator
             WindowState = FormWindowState.Maximized;
             InitializeComponent();
             //Inicializace Budov a jejich uložení do listu
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 1; i++)
             {
                 buildingList.Add(new Building(20, 20, 10, 1, i, false));
             }
@@ -75,33 +76,13 @@ namespace ElevatorSimulator
                     //pokud jsou zavřené dveře u výtahu, výtah je červený
                     if (elev.door == Elevator.Door.closed)
                     {
-                        kp.FillRectangle(Brushes.Red, elevator);
+                        brush2.Color = Color.Red;
                     }
-                    //Tohle musím ještě dodělat
-                    else if (elev.door == Elevator.Door.open)
+                    if (elev.door == Elevator.Door.open)
                     {
-                            if (elev.Width >= 0)
-                            {
-                                elev.Width--;
-                            }
-                            else if(elev.Width == 0)
-                            {
-                                test = false;
-                            }
-                        while (!test)
-                        {
-                            if (elev.Width <= 20)
-                            {
-                                elev.Width++;
-                            }
-                            else if (elev.Width == 20)
-                            {
-                                elev.door = Elevator.Door.closed;
-                                test = true;
-                            }
-                        }
-                        kp.FillRectangle(Brushes.Green, elevator);
+                        brush2.Color = Color.Green;
                     }
+                    kp.FillRectangle(brush2, elevator);
                     //posouvání výtahu
                     elev.FloorCheck(building);
                     //výpis do richtextboxu
