@@ -34,3 +34,4 @@ C:\Users\X\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulato
 C:\Users\X\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.Form1.resources
 C:\Users\X\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.Properties.Resources.resources
 C:\Users\X\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.csproj.GenerateResource.Cache
+C:\Users\X\Documents\GitHub\ElevatorSimulator\ElevatorSimulator\ElevatorSimulator\obj\Debug\ElevatorSimulator.AboutBox1.resources
