@@ -14,11 +14,10 @@ namespace ElevatorSimulator
         public AboutBox1()
         {
             InitializeComponent();
-            this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
+            this.Text = String.Format("About Elevator Simulator");
+            this.labelProductName.Text = String.Format("Elevator Simulator");
             this.labelVersion.Text = String.Format("Version: 1.20.5");
             this.labelCopyright.Text = String.Format("Copyright: Jakub Sůva, Ondřej Záruba, Tomáš Vaněk");
-            this.textBoxDescription.Text = AssemblyDescription;
         }
 
         #region Assembly Attribute Accessors
@@ -101,12 +100,12 @@ namespace ElevatorSimulator
         }
         #endregion
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://vanekt.soskolin.eu/prg.pdf");
         }

@@ -33,21 +33,21 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button16 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.AboutButton = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.AboutButton = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -135,6 +135,18 @@
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.Button16_Click);
             // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(122, 62);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Start/Stop";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // button15
             // 
             this.button15.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -146,69 +158,6 @@
             this.button15.Text = "Restart";
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.Button15_Click);
-            // 
-            // button14
-            // 
-            this.button14.BackColor = System.Drawing.SystemColors.Control;
-            this.button14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button14.Location = new System.Drawing.Point(131, 139);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(122, 62);
-            this.button14.TabIndex = 13;
-            this.button14.Text = "Remove floor";
-            this.button14.UseVisualStyleBackColor = false;
-            this.button14.Click += new System.EventHandler(this.Button14_Click);
-            // 
-            // button13
-            // 
-            this.button13.BackColor = System.Drawing.SystemColors.Control;
-            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button13.Location = new System.Drawing.Point(3, 139);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(122, 62);
-            this.button13.TabIndex = 12;
-            this.button13.Text = "Remove building";
-            this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.Button13_Click);
-            // 
-            // button12
-            // 
-            this.button12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button12.Location = new System.Drawing.Point(387, 3);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(122, 62);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "Show/Hide FPS";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.Button12_Click);
-            // 
-            // button11
-            // 
-            this.button11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button11.Location = new System.Drawing.Point(259, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(122, 62);
-            this.button11.TabIndex = 10;
-            this.button11.Text = "Show/Hide Log";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.Button11_Click);
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.SystemColors.Control;
-            this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button10.Location = new System.Drawing.Point(131, 71);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(122, 62);
-            this.button10.TabIndex = 9;
-            this.button10.Text = "Add floor";
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.Button10_Click);
             // 
             // button9
             // 
@@ -223,44 +172,6 @@
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.Button9_Click);
             // 
-            // button8
-            // 
-            this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button8.Location = new System.Drawing.Point(131, 207);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(122, 63);
-            this.button8.TabIndex = 7;
-            this.button8.Text = "Lock/Unlock elevator";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.Button8_Click);
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.SystemColors.Control;
-            this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button7.Location = new System.Drawing.Point(387, 71);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(122, 62);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Speed-up generating";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.Control;
-            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button6.Location = new System.Drawing.Point(387, 139);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(122, 62);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Slow generating";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
-            // 
             // button5
             // 
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -273,17 +184,44 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
-            // AboutButton
+            // button13
             // 
-            this.AboutButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.AboutButton.Location = new System.Drawing.Point(259, 207);
-            this.AboutButton.Name = "AboutButton";
-            this.AboutButton.Size = new System.Drawing.Size(122, 63);
-            this.AboutButton.TabIndex = 3;
-            this.AboutButton.Text = "About";
-            this.AboutButton.UseVisualStyleBackColor = true;
-            this.AboutButton.Click += new System.EventHandler(this.Button4_Click);
+            this.button13.BackColor = System.Drawing.SystemColors.Control;
+            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button13.Location = new System.Drawing.Point(3, 139);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(122, 62);
+            this.button13.TabIndex = 12;
+            this.button13.Text = "Remove building";
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.Button13_Click);
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.SystemColors.Control;
+            this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button10.Location = new System.Drawing.Point(131, 71);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(122, 62);
+            this.button10.TabIndex = 9;
+            this.button10.Text = "Add floor";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.Button10_Click);
+            // 
+            // button14
+            // 
+            this.button14.BackColor = System.Drawing.SystemColors.Control;
+            this.button14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button14.Location = new System.Drawing.Point(131, 139);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(122, 62);
+            this.button14.TabIndex = 13;
+            this.button14.Text = "Remove floor";
+            this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.Button14_Click);
             // 
             // button3
             // 
@@ -311,17 +249,79 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
-            // button1
+            // button12
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 62);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Start/Stop";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.button12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button12.Location = new System.Drawing.Point(387, 3);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(122, 62);
+            this.button12.TabIndex = 11;
+            this.button12.Text = "Show/Hide FPS";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.Button12_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.SystemColors.Control;
+            this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button7.Location = new System.Drawing.Point(387, 71);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(122, 62);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Speed-up generating";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            // 
+            // button11
+            // 
+            this.button11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button11.Location = new System.Drawing.Point(259, 3);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(122, 62);
+            this.button11.TabIndex = 10;
+            this.button11.Text = "Show/Hide Log";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.Button11_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.SystemColors.Control;
+            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button6.Location = new System.Drawing.Point(387, 139);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(122, 62);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "Slow generating";
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            // 
+            // button8
+            // 
+            this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button8.Location = new System.Drawing.Point(131, 207);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(122, 63);
+            this.button8.TabIndex = 7;
+            this.button8.Text = "Lock/Unlock elevator";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            // 
+            // AboutButton
+            // 
+            this.AboutButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.AboutButton.Location = new System.Drawing.Point(259, 207);
+            this.AboutButton.Name = "AboutButton";
+            this.AboutButton.Size = new System.Drawing.Size(122, 63);
+            this.AboutButton.TabIndex = 3;
+            this.AboutButton.Text = "About";
+            this.AboutButton.UseVisualStyleBackColor = true;
+            this.AboutButton.Click += new System.EventHandler(this.Button4_Click);
             // 
             // richTextBox1
             // 
