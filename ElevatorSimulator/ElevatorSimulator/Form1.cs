@@ -165,16 +165,18 @@ namespace ElevatorSimulator
         private void Button16_Click(object sender, EventArgs e)
         {
             //ukončení programu
-            Environment.Exit(0);
+            this.Close();
         }
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            timer2.Interval += 500;
+            //zvětšení intervalu generování
+            timer2.Interval += 100;
         }
 
         private void Button7_Click(object sender, EventArgs e)
         {
+            //zmenšení intervalu generování
             if (timer2.Interval > 100)
             {
                 timer2.Interval -= 100;
@@ -184,6 +186,7 @@ namespace ElevatorSimulator
 
         private void Button5_Click(object sender, EventArgs e)
         {
+            // start/stop timeru2(generování)
             if (timer2.Enabled == false)
             {
                 timer2.Start();
@@ -206,24 +209,28 @@ namespace ElevatorSimulator
         }
         private void Button9_Click(object sender, EventArgs e)
         {
+            //přidání budovy
             numberOfBuildings++;
             KokotFixus(numberOfBuildings, numberOfFloors);
         }
 
         private void Button13_Click(object sender, EventArgs e)
         {
+            //odebrání budovy
             numberOfBuildings--;
             KokotFixus(numberOfBuildings, numberOfFloors);
         }
 
         private void Button10_Click(object sender, EventArgs e)
         {
+            //přidání podlaží
             numberOfFloors++;
             KokotFixus(numberOfBuildings, numberOfFloors);
         }
 
         private void Button14_Click(object sender, EventArgs e)
         {
+            //odebrání podlaží
             numberOfFloors--;
             KokotFixus(numberOfBuildings, numberOfFloors);
         }
@@ -239,11 +246,13 @@ namespace ElevatorSimulator
 
         private void Button15_Click(object sender, EventArgs e)
         {
+            // restart
             KokotFixus(numberOfBuildings, numberOfFloors);
         }
 
         private void Button11_Click(object sender, EventArgs e)
         {
+            // start/stop logu
             if (log)
             {
                 log = false;
@@ -256,6 +265,7 @@ namespace ElevatorSimulator
 
         private void Button12_Click(object sender, EventArgs e)
         {
+            // zobrazení FPS
             label1.Text = "";
             if (fps)
             {
@@ -281,6 +291,7 @@ namespace ElevatorSimulator
 
         private void Button8_Click(object sender, EventArgs e)
         {
+            // zamknutí/odemknutí výtahu
             if ((comboBox2.SelectedItem as Elevator).Locked == Elevator.Lock.locked)
             {
                 (comboBox2.SelectedItem as Elevator).Locked = Elevator.Lock.unlocked;
@@ -291,11 +302,11 @@ namespace ElevatorSimulator
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
-            AboutBox1 a = new AboutBox1();
-            a.Show();
-
+            //about
+            AboutBox1 about = new AboutBox1();
+            about.Show();
         }
     }
 }

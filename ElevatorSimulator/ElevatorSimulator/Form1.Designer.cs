@@ -264,7 +264,7 @@
             this.AboutButton.TabIndex = 3;
             this.AboutButton.Text = "About";
             this.AboutButton.UseVisualStyleBackColor = true;
-            this.AboutButton.Click += new System.EventHandler(this.button4_Click);
+            this.AboutButton.Click += new System.EventHandler(this.Button4_Click);
             // 
             // button3
             // 
