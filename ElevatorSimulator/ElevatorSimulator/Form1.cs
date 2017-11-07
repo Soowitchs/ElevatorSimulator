@@ -39,7 +39,7 @@ namespace ElevatorSimulator
             timer1.Start();
             timer2.Start();
         }
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             //timer na běh celého programu
             this.Refresh();
@@ -112,7 +112,7 @@ namespace ElevatorSimulator
                 }
             }
         }
-        private async void timer2_Tick(object sender, EventArgs e)
+        private async void Timer2_Tick(object sender, EventArgs e)
         {
             //fps počítadlo
             if (fps)
@@ -134,7 +134,7 @@ namespace ElevatorSimulator
                 }
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             //vypínání a zapínání timeru
             if (timer1.Enabled == false)
@@ -147,13 +147,13 @@ namespace ElevatorSimulator
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             //zvětšování intervatu timeru
             timer1.Interval += 20;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             //kontrola a zmenšování intervalu timeru
             if (timer1.Interval > 10)
@@ -162,18 +162,18 @@ namespace ElevatorSimulator
             }
         }
 
-        private void button16_Click(object sender, EventArgs e)
+        private void Button16_Click(object sender, EventArgs e)
         {
             //ukončení programu
             Environment.Exit(0);
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void Button6_Click(object sender, EventArgs e)
         {
             timer2.Interval += 500;
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void Button7_Click(object sender, EventArgs e)
         {
             if (timer2.Interval > 100)
             {
@@ -182,7 +182,7 @@ namespace ElevatorSimulator
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
             if (timer2.Enabled == false)
             {
@@ -194,7 +194,7 @@ namespace ElevatorSimulator
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //načítání výtahů do comboboxu2 po vybrání v comboboxu1
             foreach (Building item in buildingList)
@@ -204,25 +204,25 @@ namespace ElevatorSimulator
             comboBox2.DataSource = (comboBox1.SelectedItem as Building).elevatorList;
             (comboBox1.SelectedItem as Building).Selected = true;
         }
-        private void button9_Click(object sender, EventArgs e)
+        private void Button9_Click(object sender, EventArgs e)
         {
             numberOfBuildings++;
             KokotFixus(numberOfBuildings, numberOfFloors);
         }
 
-        private void button13_Click(object sender, EventArgs e)
+        private void Button13_Click(object sender, EventArgs e)
         {
             numberOfBuildings--;
             KokotFixus(numberOfBuildings, numberOfFloors);
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void Button10_Click(object sender, EventArgs e)
         {
             numberOfFloors++;
             KokotFixus(numberOfBuildings, numberOfFloors);
         }
 
-        private void button14_Click(object sender, EventArgs e)
+        private void Button14_Click(object sender, EventArgs e)
         {
             numberOfFloors--;
             KokotFixus(numberOfBuildings, numberOfFloors);
@@ -237,12 +237,12 @@ namespace ElevatorSimulator
             comboBox1.DataSource = buildingList;
         }
 
-        private void button15_Click(object sender, EventArgs e)
+        private void Button15_Click(object sender, EventArgs e)
         {
             KokotFixus(numberOfBuildings, numberOfFloors);
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void Button11_Click(object sender, EventArgs e)
         {
             if (log)
             {
@@ -254,7 +254,7 @@ namespace ElevatorSimulator
             }
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void Button12_Click(object sender, EventArgs e)
         {
             label1.Text = "";
             if (fps)
@@ -267,7 +267,7 @@ namespace ElevatorSimulator
             }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (Building item in buildingList)
             {
@@ -279,7 +279,7 @@ namespace ElevatorSimulator
             (comboBox2.SelectedItem as Elevator).selected = true;
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void Button8_Click(object sender, EventArgs e)
         {
             if ((comboBox2.SelectedItem as Elevator).Locked == Elevator.Lock.locked)
             {

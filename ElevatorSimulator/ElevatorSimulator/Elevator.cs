@@ -245,7 +245,7 @@ namespace ElevatorSimulator
             {
                 if (this.Queue.First() == this.floor)
                 {
-                    this.downscale();
+                    this.Downscale();
                     await Task.Delay(1500);
                     if (humanList.First().StartFloor == this.floor)
                     {
@@ -264,7 +264,7 @@ namespace ElevatorSimulator
                             fixus    = this.floor + 1;
                         }
                     }
-                    this.upscale();
+                    this.Upscale();
                     await Task.Delay(1500);
                 }
                 else if (this.Queue.First() > this.floor)
@@ -339,7 +339,7 @@ namespace ElevatorSimulator
         {
             return "Elevator number: " + this.number;
         }
-        public async void downscale()
+        public async void Downscale()
         {
             this.door = Elevator.Door.open;
             for (int i = 19; i > 0; i--)
@@ -348,7 +348,7 @@ namespace ElevatorSimulator
                 await Task.Delay(50);
             }
         }
-        public async void upscale()
+        public async void Upscale()
         {
             for (int i = 0; i < 19; i++)
             {
