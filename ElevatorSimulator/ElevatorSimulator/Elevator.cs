@@ -205,6 +205,19 @@ namespace ElevatorSimulator
                         output.Add(human.StartFloor);
                         output.Add(human.EndFloor);
                     }
+                    List<int> output2 = new List<int>();
+                    string text = "";
+                    foreach (Human human in humanList)
+                    {
+                        foreach (Human human2 in humanList)
+                        {
+                            if (human2.StartFloor < human.StartFloor && human2.StartFloor > human.EndFloor)
+                            {
+                                output2.Add(human2.StartFloor);
+                                output2.Add(human.StartFloor);
+                            }
+                        }
+                    }
                     return output;
                 }
             }
@@ -220,7 +233,12 @@ namespace ElevatorSimulator
             {
                 output += queueFloors + ";";
             }
-            return (this.ToString() + ", Floor: " + this.Floor + ". Position: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output);
+            if (Queue.Count > 1)
+            {
+
+                return (this.ToString() + ", Floor: " + this.Floor + ". Position: " + this.Position.ToString() + ", Queue: " + this.Queue.First() + ", All Queue: " + output); 
+            }
+            return "";
         }
         public async void FloorCheck(Building building)
         {
@@ -244,7 +262,7 @@ namespace ElevatorSimulator
                         }
                         else if (this.Queue.First() > this.floor)
                         {
-                            fixus = this.floor + 1;
+                            fixus    = this.floor + 1;
                         }
                     }
                     this.upscale();

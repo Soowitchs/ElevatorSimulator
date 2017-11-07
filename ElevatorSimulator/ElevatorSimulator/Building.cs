@@ -142,7 +142,18 @@ namespace ElevatorSimulator
         {
             rnd = new Random();
             //human = new Human(Human.Direction.down, 50, 4, 4, buildingNumber, floor);
-            human = new Human(Human.Direction.down, 50, rnd.Next(1, NumberOfFloors + 1), rnd.Next(1, NumberOfFloors + 1), buildingNumber, floor, false);
+            int rnda = rnd.Next(1, NumberOfFloors + 1);
+            int rndb = rnd.Next(1, NumberOfFloors + 1);
+            Human.Direction dir;
+            if (rnda > rndb)
+            {
+                dir = Human.Direction.up;
+            }
+            else
+            {
+                dir = Human.Direction.down;
+            }
+            human = new Human(dir, 50, rnda,rndb, buildingNumber, floor, false);
             elevator.humanList.Add(human);
             //MessageBox.Show(this.humanList.First().Position.ToString() + " " + rnd.Next(1, this.NumberOfElevators).ToString());
         }
