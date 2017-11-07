@@ -18,7 +18,6 @@ namespace ElevatorSimulator
         {
             get
             {
-                //Dodělat pozice
                 return new Point(numberOfFloorX*20, numberOfFloorY*20);
             }
         }

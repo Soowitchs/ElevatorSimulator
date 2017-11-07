@@ -16,9 +16,8 @@ namespace ElevatorSimulator
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
+            this.labelVersion.Text = String.Format("Version: 1.20.5");
+            this.labelCopyright.Text = String.Format("Copyright: Jakub Sůva, Ondřej Záruba, Tomáš Vaněk");
             this.textBoxDescription.Text = AssemblyDescription;
         }
 
@@ -102,14 +101,14 @@ namespace ElevatorSimulator
         }
         #endregion
 
-        private void AboutBox1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void okButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://vanekt.soskolin.eu/prg.pdf");
         }
     }
 }

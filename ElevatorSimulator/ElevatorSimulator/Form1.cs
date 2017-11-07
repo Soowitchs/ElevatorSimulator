@@ -38,6 +38,7 @@ namespace ElevatorSimulator
             comboBox1.DataSource = buildingList;
             timer1.Start();
             timer2.Start();
+            button1.BackColor = Color.Green;
         }
         private void Timer1_Tick(object sender, EventArgs e)
         {
@@ -140,10 +141,12 @@ namespace ElevatorSimulator
             if (timer1.Enabled == false)
             {
                 timer1.Start();
+                button1.BackColor = Color.Green;
             }
             else if (timer1.Enabled == true)
             {
                 timer1.Stop();
+                button1.BackColor = Color.Red;
             }
         }
 
@@ -207,6 +210,7 @@ namespace ElevatorSimulator
             comboBox2.DataSource = (comboBox1.SelectedItem as Building).elevatorList;
             (comboBox1.SelectedItem as Building).Selected = true;
         }
+
         private void Button9_Click(object sender, EventArgs e)
         {
             //přidání budovy
@@ -234,6 +238,7 @@ namespace ElevatorSimulator
             numberOfFloors--;
             KokotFixus(numberOfBuildings, numberOfFloors);
         }
+
         public void KokotFixus(int numberOfBuildings, int numberOfFloors)
         {
             buildingList = new List<Building>();
@@ -252,7 +257,7 @@ namespace ElevatorSimulator
 
         private void Button11_Click(object sender, EventArgs e)
         {
-            // start/stop logu
+            // zobrazení logu
             if (log)
             {
                 log = false;
@@ -307,6 +312,11 @@ namespace ElevatorSimulator
             //about
             AboutBox1 about = new AboutBox1();
             about.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

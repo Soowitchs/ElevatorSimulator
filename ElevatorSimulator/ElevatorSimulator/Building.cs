@@ -136,12 +136,10 @@ namespace ElevatorSimulator
                 elevatorList.Add(elevator);
                 position.X += 20;
             }
-            //MessageBox.Show("Floors: " + NumberOfFloors + "\n" + "Elevators: " + NumberOfElevators + "\n" + "Lenght of one floor: " + floor.LenghtOfOneFloor() + "\n" +  "Total lenght: " + TotalLenght + "\n");
         }
         public void GenerateHuman()
         {
             rnd = new Random();
-            //human = new Human(Human.Direction.down, 50, 4, 4, buildingNumber, floor);
             int rnda = rnd.Next(1, NumberOfFloors + 1);
             int rndb = rnd.Next(1, NumberOfFloors + 1);
             Human.Direction dir;
@@ -155,7 +153,6 @@ namespace ElevatorSimulator
             }
             human = new Human(dir, 50, rnda,rndb, buildingNumber, floor, false);
             elevator.humanList.Add(human);
-            //MessageBox.Show(this.humanList.First().Position.ToString() + " " + rnd.Next(1, this.NumberOfElevators).ToString());
         }
         public Building()
         {
