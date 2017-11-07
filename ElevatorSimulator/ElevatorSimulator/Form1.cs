@@ -290,12 +290,5 @@ namespace ElevatorSimulator
                 (comboBox2.SelectedItem as Elevator).Locked = Elevator.Lock.locked;
             }
         }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            AboutBox1 a = new AboutBox1();
-            a.Show();
-
-        }
     }
 }
