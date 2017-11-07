@@ -141,8 +141,9 @@
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(122, 63);
             this.button15.TabIndex = 14;
-            this.button15.Text = "button15";
+            this.button15.Text = "Restart";
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // button14
             // 
@@ -151,8 +152,9 @@
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(122, 63);
             this.button14.TabIndex = 13;
-            this.button14.Text = "button14";
+            this.button14.Text = "Remove floor";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // button13
             // 
@@ -161,8 +163,9 @@
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(122, 63);
             this.button13.TabIndex = 12;
-            this.button13.Text = "button13";
+            this.button13.Text = "Remove building";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // button12
             // 
@@ -173,6 +176,7 @@
             this.button12.TabIndex = 11;
             this.button12.Text = "button12";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button11
             // 
@@ -181,8 +185,9 @@
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(122, 62);
             this.button11.TabIndex = 10;
-            this.button11.Text = "button11";
+            this.button11.Text = "Start/Stop Log";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button10
             // 
@@ -191,8 +196,9 @@
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(122, 62);
             this.button10.TabIndex = 9;
-            this.button10.Text = "button10";
+            this.button10.Text = "Add floor";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button9
             // 
@@ -201,8 +207,9 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(122, 62);
             this.button9.TabIndex = 8;
-            this.button9.Text = "button9";
+            this.button9.Text = "Add building";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -406,7 +413,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button11;
@@ -429,6 +435,7 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button14;
     }
 }
 

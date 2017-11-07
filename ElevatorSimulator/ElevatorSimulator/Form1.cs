@@ -21,8 +21,12 @@ namespace ElevatorSimulator
         Pen pen = new Pen(Color.Black, 2);
         SolidBrush brush = new SolidBrush(Color.Black);
         SolidBrush brush2 = new SolidBrush(Color.Red);
+        int numberOfBuildings = 1;
+        int numberOfFloors = 1;
+        int j = 0;
         int i = 0;
-        bool test = true;
+        bool log = true;
+        bool fps = true;
         public Form1()
         {
             //Maximalizace programu, odstranění horního panelu
@@ -30,20 +34,17 @@ namespace ElevatorSimulator
             WindowState = FormWindowState.Maximized;
             InitializeComponent();
             //Inicializace Budov a jejich uložení do listu
-            for (int i = 1; i <= 1; i++)
-            {
-                buildingList.Add(new Building(20, 20, 10, 1, i, false));
-            }
+            KokotFixus(numberOfBuildings, numberOfFloors);
             //nastavení vstupu na list
             comboBox1.DataSource = buildingList;
             timer1.Start();
             timer2.Start();
         }
         private void timer1_Tick(object sender, EventArgs e)
-        { 
+        {
             //timer na běh celého programu
             this.Refresh();
-            i++;
+            j++;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -86,7 +87,10 @@ namespace ElevatorSimulator
                     //posouvání výtahu
                     elev.FloorCheck(building);
                     //výpis do richtextboxu
-                    richTextBox1.Text += elev.Output() + "\n";
+                    if (log)
+                    {
+                        richTextBox1.Text += elev.Output() + "\n"; 
+                    }
                     //vykreslení lidí
                     foreach (Human human in elev.humanList)
                     {
@@ -108,8 +112,11 @@ namespace ElevatorSimulator
         private async void timer2_Tick(object sender, EventArgs e)
         {
             //fps počítadlo
-            label1.Text = i.ToString();
-            i = 0;
+            if (fps)
+            {
+                label1.Text = (j / 2).ToString();
+                j = 0; 
+            }
             //generování lidí
             foreach (Building building in buildingList)
             {
@@ -121,7 +128,7 @@ namespace ElevatorSimulator
                         building.GenerateHuman();
                         await Task.Delay(10);
                     }
-                } 
+                }
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -193,6 +200,68 @@ namespace ElevatorSimulator
             }
             comboBox2.DataSource = (comboBox1.SelectedItem as Building).elevatorList;
             (comboBox1.SelectedItem as Building).Selected = true;
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            numberOfBuildings++;
+            KokotFixus(numberOfBuildings, numberOfFloors);
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            numberOfBuildings--;
+            KokotFixus(numberOfBuildings, numberOfFloors);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            numberOfFloors++;
+            KokotFixus(numberOfBuildings, numberOfFloors);
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            numberOfFloors--;
+            KokotFixus(numberOfBuildings, numberOfFloors);
+        }
+        public void KokotFixus(int numberOfBuildings, int numberOfFloors)
+        {
+            buildingList = new List<Building>();
+            for (int i = 1; i <= numberOfBuildings; i++)
+            {
+                buildingList.Add(new Building(numberOfFloors, 20, 10, 1, i, false));
+            }
+            comboBox1.DataSource = buildingList;
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            KokotFixus(numberOfBuildings, numberOfFloors);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (log)
+            {
+                log = false;
+            }
+            else if (!log)
+            {
+                log = true;
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            label1.Text = "";
+            if (fps)
+            {
+                fps = false;
+            }
+            else if (!fps)
+            {
+                fps = true;
+            }
         }
     }
 }
