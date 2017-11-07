@@ -132,7 +132,7 @@ namespace ElevatorSimulator
             Point position = new Point(20*buildingNumber,20);
             for (int i = 1; i <= numberOfElevators; i++)
             {
-                elevator = new Elevator(1000, 10, 10, 1, 1, Human.Direction.nowhere, 1, position, Elevator.Door.closed ,Elevator.Lock.unlocked, buildingNumber, this, 19);
+                elevator = new Elevator(1000, 10, 10, 1, 1, Human.Direction.nowhere, 1, position, Elevator.Door.closed ,Elevator.Lock.unlocked, buildingNumber, this, 19, false);
                 elevatorList.Add(elevator);
                 position.X += 20;
             }

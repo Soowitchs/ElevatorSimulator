@@ -65,7 +65,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 40;
+            this.timer1.Interval = 50;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // tableLayoutPanel1
@@ -174,7 +174,7 @@
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(122, 62);
             this.button12.TabIndex = 11;
-            this.button12.Text = "button12";
+            this.button12.Text = "Start/Stop FPS";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
@@ -218,8 +218,9 @@
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(122, 62);
             this.button8.TabIndex = 7;
-            this.button8.Text = "button8";
+            this.button8.Text = "Lock elevator";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
@@ -351,6 +352,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 5;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox1
             // 

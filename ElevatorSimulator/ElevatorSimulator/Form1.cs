@@ -21,10 +21,9 @@ namespace ElevatorSimulator
         Pen pen = new Pen(Color.Black, 2);
         SolidBrush brush = new SolidBrush(Color.Black);
         SolidBrush brush2 = new SolidBrush(Color.Red);
-        int numberOfBuildings = 1;
-        int numberOfFloors = 1;
+        int numberOfBuildings = 5;
+        int numberOfFloors = 5;
         int j = 0;
-        int i = 0;
         bool log = true;
         bool fps = true;
         public Form1()
@@ -82,6 +81,10 @@ namespace ElevatorSimulator
                     if (elev.door == Elevator.Door.open)
                     {
                         brush2.Color = Color.Green;
+                    }
+                    if (elev.selected)
+                    {
+                        brush2.Color = Color.Blue;
                     }
                     kp.FillRectangle(brush2, elevator);
                     //posouvání výtahu
@@ -147,15 +150,15 @@ namespace ElevatorSimulator
         private void button2_Click(object sender, EventArgs e)
         {
             //zvětšování intervatu timeru
-            timer1.Interval += 5;
+            timer1.Interval += 20;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             //kontrola a zmenšování intervalu timeru
-            if (timer1.Interval > 5)
+            if (timer1.Interval > 10)
             {
-                timer1.Interval -= 5;
+                timer1.Interval -= 10;
             }
         }
 
@@ -261,6 +264,30 @@ namespace ElevatorSimulator
             else if (!fps)
             {
                 fps = true;
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (Building item in buildingList)
+            {
+                foreach (Elevator item2 in item.elevatorList)
+                {
+                    item2.selected = false;
+                }
+            }
+            (comboBox2.SelectedItem as Elevator).selected = true;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if ((comboBox2.SelectedItem as Elevator).Locked == Elevator.Lock.locked)
+            {
+                (comboBox2.SelectedItem as Elevator).Locked = Elevator.Lock.unlocked;
+            }
+            else if ((comboBox2.SelectedItem as Elevator).Locked == Elevator.Lock.unlocked)
+            {
+                (comboBox2.SelectedItem as Elevator).Locked = Elevator.Lock.locked;
             }
         }
     }

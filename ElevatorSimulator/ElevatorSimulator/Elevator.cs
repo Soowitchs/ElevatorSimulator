@@ -31,7 +31,19 @@ namespace ElevatorSimulator
         public List<Human> humanList = new List<Human>();
         Lock locked;
         Random rnd = new Random();
+        public bool selected;
         #region Properties
+        public Lock Locked
+        {
+            get
+            {
+                return locked;
+            }
+            set
+            {
+                locked = value;
+            }
+        }
         public int Width
         {
             get
@@ -205,19 +217,6 @@ namespace ElevatorSimulator
                         output.Add(human.StartFloor);
                         output.Add(human.EndFloor);
                     }
-                    List<int> output2 = new List<int>();
-                    string text = "";
-                    foreach (Human human in humanList)
-                    {
-                        foreach (Human human2 in humanList)
-                        {
-                            if (human2.StartFloor < human.StartFloor && human2.StartFloor > human.EndFloor)
-                            {
-                                output2.Add(human2.StartFloor);
-                                output2.Add(human.StartFloor);
-                            }
-                        }
-                    }
                     return output;
                 }
             }
@@ -242,7 +241,7 @@ namespace ElevatorSimulator
         }
         public async void FloorCheck(Building building)
         {
-            if (this.Queue.Count >= 2 && this.door == Elevator.Door.closed)
+            if (this.Queue.Count >= 2 && this.door == Elevator.Door.closed && this.Locked == Elevator.Lock.unlocked)
             {
                 if (this.Queue.First() == this.floor)
                 {
@@ -319,8 +318,9 @@ namespace ElevatorSimulator
                 }
             }
         }
-        public Elevator (int maxLoad, int maxCapacity, int maxSpeed, int acceleration, int floor, Human.Direction direction, int weight, Point position, Door door, Lock locked, int number, Building building, int width)
+        public Elevator (int maxLoad, int maxCapacity, int maxSpeed, int acceleration, int floor, Human.Direction direction, int weight, Point position, Door door, Lock locked, int number, Building building, int width, bool selected)
         {
+            this.selected = selected;
             this.Width = width;
             this.building = building;
             this.Number = number;
@@ -333,7 +333,7 @@ namespace ElevatorSimulator
             this.weight = weight;
             this.position = position;
             this.door = door;
-            this.locked = locked;
+            this.Locked = locked;
         }
         public override string ToString()
         {

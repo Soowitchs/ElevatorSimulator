@@ -10,7 +10,6 @@ namespace ElevatorSimulator
     class Floor
     {
         public List<Human> humanList = new List<Human>();
-        Point position;
         double lenghtOfMezzanineFloor;
         double lenghtOfFloor;
         int numberOfFloorX;
